@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Estudiantes:</h1>
+    <h1>Tabla De Estudiantes</h1>
     <table class="user-table">
       <thead>
         <tr>
@@ -22,7 +22,7 @@
           <td>{{ user.email }}</td>
           <td>{{ user.group }}</td>
           <td>
-            <button @click="deleteStudent(user.id)">Eliminar</button>
+            <button class="delete-button" @click="onDeleteStudent(user.id)">Eliminar</button>
           </td>
         </tr>
       </tbody>
@@ -31,25 +31,28 @@
 </template>
 
 <script setup lang="ts">
-import { useStudentStore } from '@/stores/StudentStore';
 import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import { useStudentStore } from '@/stores/StudentStore';
+import { fetchStudents } from '@/stores/GetStudents';
+import { deleteStudent } from '@/stores/DeleteStudent';
 
 const studentStore = useStudentStore();
 const router = useRouter();
 
 onMounted(() => {
-  studentStore.fetchStudents();
+  fetchStudents();
 });
 
-const deleteStudent = async (id: string) => {
-  await studentStore.deleteStudent(id);
+const onDeleteStudent = async (id: string) => {
+  await deleteStudent(id);
 };
 </script>
 
 <style scoped>
 .user-table {
-  width: 100%;
+  width: 80%;
+  margin-left: 10%;
   border-collapse: collapse;
 }
 
@@ -62,5 +65,19 @@ const deleteStudent = async (id: string) => {
 .user-table th {
   background-color: #f2f2f2;
   text-align: left;
+}
+
+.delete-button {
+  padding: 6px 10px;
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
 }
 </style>

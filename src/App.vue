@@ -1,21 +1,11 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-<!--         <RouterLink to="/Login">Login</RouterLink>
- -->        <RouterLink to="/Register">Registro</RouterLink>
-        <RouterLink to="/student">Alumnos</RouterLink>
+        <RouterLink to="/" class="nav-link">Home</RouterLink>
+        <RouterLink to="/about" class="nav-link">About</RouterLink>
+        <RouterLink to="/Register" class="nav-link">Registro</RouterLink>
+        <RouterLink to="/student" class="nav-link">Alumnos</RouterLink>
       </nav>
     </div>
   </header>
@@ -26,38 +16,38 @@ import HelloWorld from './components/HelloWorld.vue'
 <style scoped>
 header {
   line-height: 1.5;
-  max-height: 100vh;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+
+.wrapper {
+  width: 100%;
+  height: 100%;
 }
 
 nav {
-  width: 100%;
-  font-size: 12px;
+  width: 110%; 
+  background-color: #333;
+  margin-top: 1.5rem;
   text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
 }
 
 nav a {
+  color: #fff;
   display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+  padding: 0 5rem;
+  margin-right: 1rem;
+  margin-left: 10%;
+  transition: color 0.3s ease;
 }
 
-nav a:first-of-type {
-  border: 0;
+nav a.router-link-exact-active {
+  background-color: #666;
 }
+
+nav a:hover {
+  color: #ffcc00;
+}
+
 
 @media (min-width: 1024px) {
   header {
@@ -80,7 +70,6 @@ nav a:first-of-type {
     text-align: left;
     margin-left: -1rem;
     font-size: 1rem;
-
     padding: 1rem 0;
     margin-top: 1rem;
   }

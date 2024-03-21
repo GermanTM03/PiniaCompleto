@@ -1,6 +1,6 @@
 import type IStudent from '@/interfaces/IStudent'
 
-const API_URL = 'https://65e8dab54bb72f0a9c508303.mockapi.io/dev/api'
+const API_URL = 'https://65fb979b14650eb2100a2a3e.mockapi.io/api'
 
 
 
