@@ -7,6 +7,7 @@ export const useStudentStore = defineStore('student', {
     users: [] as IStudent[],
   }),
   actions: {
+    /* El GetStudents */
     async fetchStudents() {
       try {
         this.users = await UserService.GetStudent();
@@ -14,6 +15,8 @@ export const useStudentStore = defineStore('student', {
         console.error('No se pudieron recuperar los usuarios:', error);
       }
     },
+
+    /* DeleteStudent */
     async deleteStudent(id: string) {
       try {
         await UserService.DeleteStudent(id);

@@ -1,22 +1,24 @@
 import { defineStore } from 'pinia'
-import UserService from '@/services/AuthServices'
-import type IStudent from '@/interfaces/IStudent'
+import type { IStudent } from '@/interfaces/IStudent'
 
 export const useStudentStore = defineStore({
   id: 'student',
-
   state: () => ({
-    studentDetails: null as IStudent | null,
+    students: [] as IStudent[]
   }),
-
   actions: {
-    async fetchStudentDetails(studentId: string) {
+    async fetchStudents() {
       try {
         const students = await UserService.GetStudent()
-        this.studentDetails = students.find(student => student.id === studentId) || null
+        this.students = students
       } catch (error) {
-        console.error('No se pudo recuperar el estudiante:', error)
+        console.error('No se pudo recuperar los estudiantes:', error)
       }
-    },
+    }
   },
+  getters: {
+    getStudentById(id: string): IStudent | null {
+      return this.students.find(student => student.id === id) || null
+    }
+  }
 })
